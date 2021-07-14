@@ -1,3 +1,4 @@
 Perceptron
 The Perceptron.py file is an implementation of Perceptron for AND logical function
 The files in Pattern_Recognition also use Perceptron to recognize X-like and O-like patterns. In order to test, please do run the GUI.py file, not the other one!
+Everything is written from scratch, except for the plots that uses matplotlib library to draw the separator lines.
