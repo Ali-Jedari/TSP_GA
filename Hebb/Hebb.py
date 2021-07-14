@@ -10,7 +10,7 @@ def activation(n):
 def hebb(X_train, y_train):
     '''main (train) function
         gets X_train and respective labels called y_train
-        returns weights of the hebb network'''
+        returns weights of the network which are calculated using hebb's law'''
     
     #weights = [w1, w2, bias]
     weights = [0, 0]
