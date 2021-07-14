@@ -10,7 +10,7 @@ def activation(n):
     return 1 if n >= 0 else -1
 
 def network(X_train, y_train):
-    '''main (train) function that uses Hebb's algorithm
+    '''main (train) function that uses Hebb's law
         gets X_train whose each element is either a X-like or O-like shape
         and respective labels (1 for X and -1 for O)
         returns network's weights'''
