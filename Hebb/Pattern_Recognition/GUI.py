@@ -13,7 +13,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import XO_Classification as xo
+import XO_Classification_Hebb as xo
 
 
 class Ui_Dialog(object):
