@@ -1,3 +1,3 @@
 Hebb's law
-The Hebb.py file is an implementation of Hebb's law for AND & OR logical function
+The Hebb.py file is an implementation of Hebb's law for AND & OR logical functions
 The files in Pattern_Recognition also use Hebb's law to recognize X-like and O-like patterns. In order to test, please do run the GUI.py file, not the other one!
