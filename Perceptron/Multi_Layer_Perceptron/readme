@@ -1,5 +1,5 @@
 Multi-Layer Perceptron with architecture of 21 * 4 * 3
-Designed for the Thyroid disease dataset (files are available in https://archive.ics.uci.edu/ml/datasets/thyroid+disease)
+Designed for the Thyroid disease dataset (files are available at https://archive.ics.uci.edu/ml/datasets/thyroid+disease)
 Dataset files are also added to the repository!
 Please do place all three of the files in the same directory and run MLP.py
 Accuracy of the model will be printed out at the end.
