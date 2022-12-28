@@ -1,3 +1,0 @@
-Simulation of Travelling Salesman Problem with 51 cities using Genetic Algorithm
-Coordinates of the cities are stored in TSP51.txt
-Put the two files (TSP.py and TSP51.txt) and run TSP.py

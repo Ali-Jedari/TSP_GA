@@ -8,27 +8,30 @@ using Genetic Algorithm
 
 from random import random, randrange, shuffle
 from math import sqrt
+from sys import argv
 from time import time
 
+def read_coord(path='TSP51.txt'):
+    lines = open(path).readlines()
+    coord = []
+    for i in range(len(lines)):
+        lines[i] = lines[i].replace('\n', '')
+        lines[i] = lines[i].split(' ')
+        coord.append([int(lines[i][0]), int(lines[i][1]), int(lines[i][2])])
+    
+    return coord
 
-lines = open('TSP51.txt').readlines()
-coordinations = []
-for i in range(len(lines)):
-    lines[i] = lines[i].replace('\n', '')
-    lines[i] = lines[i].split(' ')
-    coordinations.append([int(lines[i][0]), int(lines[i][1]), int(lines[i][2])])
+def distance(coord, city1, city2):
+    return sqrt((coord[city1-1][1] - coord[city2-1][1]) ** 2 + 
+                (coord[city1-1][2] - coord[city2-1][2]) ** 2)
 
-def distance(city1, city2):
-    return sqrt((coordinations[city1-1][1] - coordinations[city2-1][1]) ** 2 + 
-                (coordinations[city1-1][2] - coordinations[city2-1][2]) ** 2)
-
-def path_length(chromosome):
+def route_length(coord, chromosome):
     #it is assumed that a path always starts from city #1
-    d = 0
+    d = distance(coord, 1, chromosome[0])
+    d += distance(coord, 1, chromosome[-1])
     for i in range(1, len(chromosome)):
-        d += distance(chromosome[i-1], chromosome[i])
-    d += distance(1, chromosome[0])
-    d += distance(1, chromosome[-1])
+        d += distance(coord, chromosome[i-1], chromosome[i])
+    
     return d
 
 def crossover(parent1, parent2):
@@ -49,9 +52,9 @@ def mutate(chromosome):
         chromosome[r2:r1] = chromosome[r2:r1][::-1]
     return chromosome
 
-def tsp():
+def tsp(coord):
     population_size = 40
-    p = list()
+    p = []
     cities = [i for i in range(2, 52)]
     for i in range(population_size):
         temp_cities = cities.copy()
@@ -62,7 +65,7 @@ def tsp():
     for gen in range(generation):
         length = []
         for x in p:
-            length.append(path_length(x))
+            length.append(route_length(coord, x))
         
         fitness = [1 / length[0]]
         for i in range(1, len(length)):
@@ -70,7 +73,7 @@ def tsp():
                 
         best = p[length.index(min(length))]
         
-        new_p = list()
+        new_p = []
         while len(new_p) < population_size - 1:
             if random() <= 0.90:
                 r1 = random()
@@ -91,26 +94,29 @@ def tsp():
                     elif fitness[j-1] < r2 <= fitness[j]:
                         break
 
-
                     offspring = crossover(p[i], p[j])
                     new_p.append(offspring)
 
-        for indx in range(len(new_p)):
+        for i in range(len(new_p)):
             if random() <= 0.1:
-                new_p[indx] = mutate(new_p[indx])
-        
+                new_p[i] = mutate(new_p[i])
+
         new_p.append(best)
-        
-        p = new_p
+        p = new_p.copy()
         print(f'generation: {gen+1} out of {generation}, shortest_path_length: {min(length)}', end = '\r')
 
     return p
 
 def main():
+    if len(argv) == 1:
+        coord = read_coord()
+    else:
+        coord = read_coord(argv[1])
+
     t1 = time()
-    p = tsp()
+    p = tsp(coord)
     t2 = time()
-    print("\nTime elapsed: %.2f s" %(t2-t1))
+    print("\nTime Elapsed: %.2fs" %(t2-t1))
 
 if __name__ == '__main__':
     main()
