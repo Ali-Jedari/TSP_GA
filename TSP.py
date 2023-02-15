@@ -55,7 +55,7 @@ def mutate(chromosome):
 def tsp(coord):
     population_size = 40
     p = []
-    cities = [i for i in range(2, 52)]
+    cities = list(range(2, 52))
     for i in range(population_size):
         temp_cities = cities.copy()
         shuffle(temp_cities)
